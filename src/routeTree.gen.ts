@@ -24,7 +24,7 @@ import { Route as AppAuditoriaRouteImport } from './routes/_app/auditoria'
 import { Route as AppAprobacionesRouteImport } from './routes/_app/aprobaciones'
 import { Route as AppAnalisisRouteImport } from './routes/_app/analisis'
 import { Route as AppAdministracionRouteImport } from './routes/_app/administracion'
-import { Route as AppExpedienteRouteImport } from './routes/_app/expediente.'
+import { Route as AppExpedienteIdRouteImport } from './routes/_app/expediente.$id'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -100,9 +100,9 @@ const AppAdministracionRoute = AppAdministracionRouteImport.update({
   path: '/administracion',
   getParentRoute: () => AppRoute,
 } as any)
-const AppExpedienteRoute = AppExpedienteRouteImport.update({
-  id: '/expediente/',
-  path: '/expediente/',
+const AppExpedienteIdRoute = AppExpedienteIdRouteImport.update({
+  id: '/expediente/$id',
+  path: '/expediente/$id',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -121,7 +121,7 @@ export interface FileRoutesByFullPath {
   '/reportes': typeof AppReportesRoute
   '/seguimiento': typeof AppSeguimientoRoute
   '/solicitudes': typeof AppSolicitudesRoute
-  '/expediente/': typeof AppExpedienteRoute
+  '/expediente/$id': typeof AppExpedienteIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -138,7 +138,7 @@ export interface FileRoutesByTo {
   '/reportes': typeof AppReportesRoute
   '/seguimiento': typeof AppSeguimientoRoute
   '/solicitudes': typeof AppSolicitudesRoute
-  '/expediente': typeof AppExpedienteRoute
+  '/expediente/$id': typeof AppExpedienteIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -157,7 +157,7 @@ export interface FileRoutesById {
   '/_app/reportes': typeof AppReportesRoute
   '/_app/seguimiento': typeof AppSeguimientoRoute
   '/_app/solicitudes': typeof AppSolicitudesRoute
-  '/_app/expediente/': typeof AppExpedienteRoute
+  '/_app/expediente/$id': typeof AppExpedienteIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -176,7 +176,7 @@ export interface FileRouteTypes {
     | '/reportes'
     | '/seguimiento'
     | '/solicitudes'
-    | '/expediente/'
+    | '/expediente/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -193,7 +193,7 @@ export interface FileRouteTypes {
     | '/reportes'
     | '/seguimiento'
     | '/solicitudes'
-    | '/expediente'
+    | '/expediente/$id'
   id:
     | '__root__'
     | '/'
@@ -211,7 +211,7 @@ export interface FileRouteTypes {
     | '/_app/reportes'
     | '/_app/seguimiento'
     | '/_app/solicitudes'
-    | '/_app/expediente/'
+    | '/_app/expediente/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -327,11 +327,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAdministracionRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/expediente/': {
-      id: '/_app/expediente/'
-      path: '/expediente'
-      fullPath: '/expediente/'
-      preLoaderRoute: typeof AppExpedienteRouteImport
+    '/_app/expediente/$id': {
+      id: '/_app/expediente/$id'
+      path: '/expediente/$id'
+      fullPath: '/expediente/$id'
+      preLoaderRoute: typeof AppExpedienteIdRouteImport
       parentRoute: typeof AppRoute
     }
   }
@@ -350,7 +350,7 @@ interface AppRouteChildren {
   AppReportesRoute: typeof AppReportesRoute
   AppSeguimientoRoute: typeof AppSeguimientoRoute
   AppSolicitudesRoute: typeof AppSolicitudesRoute
-  AppExpedienteRoute: typeof AppExpedienteRoute
+  AppExpedienteIdRoute: typeof AppExpedienteIdRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -366,7 +366,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppReportesRoute: AppReportesRoute,
   AppSeguimientoRoute: AppSeguimientoRoute,
   AppSolicitudesRoute: AppSolicitudesRoute,
-  AppExpedienteRoute: AppExpedienteRoute,
+  AppExpedienteIdRoute: AppExpedienteIdRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

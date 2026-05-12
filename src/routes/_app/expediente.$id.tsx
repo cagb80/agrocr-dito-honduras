@@ -3,7 +3,7 @@ import { ArrowLeft, FileText, MapPin, Camera, FileCheck2, AlertCircle, Building2
 import { SOLICITUDES, fmtLk } from "@/lib/demo-data";
 import { StatusBadge } from "@/components/banadesa/StatusBadge";
 
-export const Route = createFileRoute("/_app/expediente/")({ component: Page });
+export const Route = createFileRoute("/_app/expediente/$id")({ component: Page });
 
 const TIMELINE = [
   { label: "Solicitud recibida", date: "08 May 2025 · 09:14", done: true },
