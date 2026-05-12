@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppSolicitudesRouteImport } from './routes/_app/solicitudes'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppClientesRouteImport } from './routes/_app/clientes'
 import { Route as AppExpedienteRouteImport } from './routes/_app/expediente.'
 
 const LoginRoute = LoginRouteImport.update({
@@ -40,6 +41,11 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppClientesRoute = AppClientesRouteImport.update({
+  id: '/clientes',
+  path: '/clientes',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppExpedienteRoute = AppExpedienteRouteImport.update({
   id: '/expediente/',
   path: '/expediente/',
@@ -49,6 +55,7 @@ const AppExpedienteRoute = AppExpedienteRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/clientes': typeof AppClientesRoute
   '/dashboard': typeof AppDashboardRoute
   '/solicitudes': typeof AppSolicitudesRoute
   '/expediente/': typeof AppExpedienteRoute
@@ -56,6 +63,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/clientes': typeof AppClientesRoute
   '/dashboard': typeof AppDashboardRoute
   '/solicitudes': typeof AppSolicitudesRoute
   '/expediente': typeof AppExpedienteRoute
@@ -65,20 +73,34 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/_app/clientes': typeof AppClientesRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/solicitudes': typeof AppSolicitudesRoute
   '/_app/expediente/': typeof AppExpedienteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/dashboard' | '/solicitudes' | '/expediente/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/clientes'
+    | '/dashboard'
+    | '/solicitudes'
+    | '/expediente/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/dashboard' | '/solicitudes' | '/expediente'
+  to:
+    | '/'
+    | '/login'
+    | '/clientes'
+    | '/dashboard'
+    | '/solicitudes'
+    | '/expediente'
   id:
     | '__root__'
     | '/'
     | '/_app'
     | '/login'
+    | '/_app/clientes'
     | '/_app/dashboard'
     | '/_app/solicitudes'
     | '/_app/expediente/'
@@ -127,6 +149,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/clientes': {
+      id: '/_app/clientes'
+      path: '/clientes'
+      fullPath: '/clientes'
+      preLoaderRoute: typeof AppClientesRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/expediente/': {
       id: '/_app/expediente/'
       path: '/expediente'
@@ -138,12 +167,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppClientesRoute: typeof AppClientesRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppSolicitudesRoute: typeof AppSolicitudesRoute
   AppExpedienteRoute: typeof AppExpedienteRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppClientesRoute: AppClientesRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppSolicitudesRoute: AppSolicitudesRoute,
   AppExpedienteRoute: AppExpedienteRoute,
