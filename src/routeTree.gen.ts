@@ -13,8 +13,13 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppSolicitudesRouteImport } from './routes/_app/solicitudes'
+import { Route as AppSeguimientoRouteImport } from './routes/_app/seguimiento'
+import { Route as AppInspeccionesRouteImport } from './routes/_app/inspecciones'
+import { Route as AppDesembolsosRouteImport } from './routes/_app/desembolsos'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppClientesRouteImport } from './routes/_app/clientes'
+import { Route as AppAprobacionesRouteImport } from './routes/_app/aprobaciones'
+import { Route as AppAnalisisRouteImport } from './routes/_app/analisis'
 import { Route as AppExpedienteRouteImport } from './routes/_app/expediente.'
 
 const LoginRoute = LoginRouteImport.update({
@@ -36,6 +41,21 @@ const AppSolicitudesRoute = AppSolicitudesRouteImport.update({
   path: '/solicitudes',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSeguimientoRoute = AppSeguimientoRouteImport.update({
+  id: '/seguimiento',
+  path: '/seguimiento',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInspeccionesRoute = AppInspeccionesRouteImport.update({
+  id: '/inspecciones',
+  path: '/inspecciones',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDesembolsosRoute = AppDesembolsosRouteImport.update({
+  id: '/desembolsos',
+  path: '/desembolsos',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -44,6 +64,16 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
 const AppClientesRoute = AppClientesRouteImport.update({
   id: '/clientes',
   path: '/clientes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAprobacionesRoute = AppAprobacionesRouteImport.update({
+  id: '/aprobaciones',
+  path: '/aprobaciones',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalisisRoute = AppAnalisisRouteImport.update({
+  id: '/analisis',
+  path: '/analisis',
   getParentRoute: () => AppRoute,
 } as any)
 const AppExpedienteRoute = AppExpedienteRouteImport.update({
@@ -55,16 +85,26 @@ const AppExpedienteRoute = AppExpedienteRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/analisis': typeof AppAnalisisRoute
+  '/aprobaciones': typeof AppAprobacionesRoute
   '/clientes': typeof AppClientesRoute
   '/dashboard': typeof AppDashboardRoute
+  '/desembolsos': typeof AppDesembolsosRoute
+  '/inspecciones': typeof AppInspeccionesRoute
+  '/seguimiento': typeof AppSeguimientoRoute
   '/solicitudes': typeof AppSolicitudesRoute
   '/expediente/': typeof AppExpedienteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/analisis': typeof AppAnalisisRoute
+  '/aprobaciones': typeof AppAprobacionesRoute
   '/clientes': typeof AppClientesRoute
   '/dashboard': typeof AppDashboardRoute
+  '/desembolsos': typeof AppDesembolsosRoute
+  '/inspecciones': typeof AppInspeccionesRoute
+  '/seguimiento': typeof AppSeguimientoRoute
   '/solicitudes': typeof AppSolicitudesRoute
   '/expediente': typeof AppExpedienteRoute
 }
@@ -73,8 +113,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/_app/analisis': typeof AppAnalisisRoute
+  '/_app/aprobaciones': typeof AppAprobacionesRoute
   '/_app/clientes': typeof AppClientesRoute
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/desembolsos': typeof AppDesembolsosRoute
+  '/_app/inspecciones': typeof AppInspeccionesRoute
+  '/_app/seguimiento': typeof AppSeguimientoRoute
   '/_app/solicitudes': typeof AppSolicitudesRoute
   '/_app/expediente/': typeof AppExpedienteRoute
 }
@@ -83,16 +128,26 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/login'
+    | '/analisis'
+    | '/aprobaciones'
     | '/clientes'
     | '/dashboard'
+    | '/desembolsos'
+    | '/inspecciones'
+    | '/seguimiento'
     | '/solicitudes'
     | '/expediente/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/login'
+    | '/analisis'
+    | '/aprobaciones'
     | '/clientes'
     | '/dashboard'
+    | '/desembolsos'
+    | '/inspecciones'
+    | '/seguimiento'
     | '/solicitudes'
     | '/expediente'
   id:
@@ -100,8 +155,13 @@ export interface FileRouteTypes {
     | '/'
     | '/_app'
     | '/login'
+    | '/_app/analisis'
+    | '/_app/aprobaciones'
     | '/_app/clientes'
     | '/_app/dashboard'
+    | '/_app/desembolsos'
+    | '/_app/inspecciones'
+    | '/_app/seguimiento'
     | '/_app/solicitudes'
     | '/_app/expediente/'
   fileRoutesById: FileRoutesById
@@ -142,6 +202,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSolicitudesRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/seguimiento': {
+      id: '/_app/seguimiento'
+      path: '/seguimiento'
+      fullPath: '/seguimiento'
+      preLoaderRoute: typeof AppSeguimientoRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/inspecciones': {
+      id: '/_app/inspecciones'
+      path: '/inspecciones'
+      fullPath: '/inspecciones'
+      preLoaderRoute: typeof AppInspeccionesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/desembolsos': {
+      id: '/_app/desembolsos'
+      path: '/desembolsos'
+      fullPath: '/desembolsos'
+      preLoaderRoute: typeof AppDesembolsosRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/dashboard': {
       id: '/_app/dashboard'
       path: '/dashboard'
@@ -156,6 +237,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppClientesRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/aprobaciones': {
+      id: '/_app/aprobaciones'
+      path: '/aprobaciones'
+      fullPath: '/aprobaciones'
+      preLoaderRoute: typeof AppAprobacionesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/analisis': {
+      id: '/_app/analisis'
+      path: '/analisis'
+      fullPath: '/analisis'
+      preLoaderRoute: typeof AppAnalisisRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/expediente/': {
       id: '/_app/expediente/'
       path: '/expediente'
@@ -167,15 +262,25 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppAnalisisRoute: typeof AppAnalisisRoute
+  AppAprobacionesRoute: typeof AppAprobacionesRoute
   AppClientesRoute: typeof AppClientesRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppDesembolsosRoute: typeof AppDesembolsosRoute
+  AppInspeccionesRoute: typeof AppInspeccionesRoute
+  AppSeguimientoRoute: typeof AppSeguimientoRoute
   AppSolicitudesRoute: typeof AppSolicitudesRoute
   AppExpedienteRoute: typeof AppExpedienteRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAnalisisRoute: AppAnalisisRoute,
+  AppAprobacionesRoute: AppAprobacionesRoute,
   AppClientesRoute: AppClientesRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppDesembolsosRoute: AppDesembolsosRoute,
+  AppInspeccionesRoute: AppInspeccionesRoute,
+  AppSeguimientoRoute: AppSeguimientoRoute,
   AppSolicitudesRoute: AppSolicitudesRoute,
   AppExpedienteRoute: AppExpedienteRoute,
 }
