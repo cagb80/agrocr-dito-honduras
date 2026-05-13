@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppSolicitudesRouteImport } from './routes/_app/solicitudes'
 import { Route as AppSeguimientoRouteImport } from './routes/_app/seguimiento'
 import { Route as AppReportesRouteImport } from './routes/_app/reportes'
+import { Route as AppRecuperacionRouteImport } from './routes/_app/recuperacion'
 import { Route as AppInspeccionesRouteImport } from './routes/_app/inspecciones'
 import { Route as AppDesembolsosRouteImport } from './routes/_app/desembolsos'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
@@ -53,6 +54,11 @@ const AppSeguimientoRoute = AppSeguimientoRouteImport.update({
 const AppReportesRoute = AppReportesRouteImport.update({
   id: '/reportes',
   path: '/reportes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRecuperacionRoute = AppRecuperacionRouteImport.update({
+  id: '/recuperacion',
+  path: '/recuperacion',
   getParentRoute: () => AppRoute,
 } as any)
 const AppInspeccionesRoute = AppInspeccionesRouteImport.update({
@@ -118,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AppDashboardRoute
   '/desembolsos': typeof AppDesembolsosRoute
   '/inspecciones': typeof AppInspeccionesRoute
+  '/recuperacion': typeof AppRecuperacionRoute
   '/reportes': typeof AppReportesRoute
   '/seguimiento': typeof AppSeguimientoRoute
   '/solicitudes': typeof AppSolicitudesRoute
@@ -135,6 +142,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AppDashboardRoute
   '/desembolsos': typeof AppDesembolsosRoute
   '/inspecciones': typeof AppInspeccionesRoute
+  '/recuperacion': typeof AppRecuperacionRoute
   '/reportes': typeof AppReportesRoute
   '/seguimiento': typeof AppSeguimientoRoute
   '/solicitudes': typeof AppSolicitudesRoute
@@ -154,6 +162,7 @@ export interface FileRoutesById {
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/desembolsos': typeof AppDesembolsosRoute
   '/_app/inspecciones': typeof AppInspeccionesRoute
+  '/_app/recuperacion': typeof AppRecuperacionRoute
   '/_app/reportes': typeof AppReportesRoute
   '/_app/seguimiento': typeof AppSeguimientoRoute
   '/_app/solicitudes': typeof AppSolicitudesRoute
@@ -173,6 +182,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/desembolsos'
     | '/inspecciones'
+    | '/recuperacion'
     | '/reportes'
     | '/seguimiento'
     | '/solicitudes'
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/desembolsos'
     | '/inspecciones'
+    | '/recuperacion'
     | '/reportes'
     | '/seguimiento'
     | '/solicitudes'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/_app/dashboard'
     | '/_app/desembolsos'
     | '/_app/inspecciones'
+    | '/_app/recuperacion'
     | '/_app/reportes'
     | '/_app/seguimiento'
     | '/_app/solicitudes'
@@ -262,6 +274,13 @@ declare module '@tanstack/react-router' {
       path: '/reportes'
       fullPath: '/reportes'
       preLoaderRoute: typeof AppReportesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/recuperacion': {
+      id: '/_app/recuperacion'
+      path: '/recuperacion'
+      fullPath: '/recuperacion'
+      preLoaderRoute: typeof AppRecuperacionRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/inspecciones': {
@@ -347,6 +366,7 @@ interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppDesembolsosRoute: typeof AppDesembolsosRoute
   AppInspeccionesRoute: typeof AppInspeccionesRoute
+  AppRecuperacionRoute: typeof AppRecuperacionRoute
   AppReportesRoute: typeof AppReportesRoute
   AppSeguimientoRoute: typeof AppSeguimientoRoute
   AppSolicitudesRoute: typeof AppSolicitudesRoute
@@ -363,6 +383,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppDesembolsosRoute: AppDesembolsosRoute,
   AppInspeccionesRoute: AppInspeccionesRoute,
+  AppRecuperacionRoute: AppRecuperacionRoute,
   AppReportesRoute: AppReportesRoute,
   AppSeguimientoRoute: AppSeguimientoRoute,
   AppSolicitudesRoute: AppSolicitudesRoute,
@@ -379,13 +400,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
