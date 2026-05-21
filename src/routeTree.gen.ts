@@ -17,6 +17,7 @@ import { Route as AppSeguimientoRouteImport } from './routes/_app/seguimiento'
 import { Route as AppReportesRouteImport } from './routes/_app/reportes'
 import { Route as AppRendimientoRouteImport } from './routes/_app/rendimiento'
 import { Route as AppRecuperacionRouteImport } from './routes/_app/recuperacion'
+import { Route as AppPreaprobadosRouteImport } from './routes/_app/preaprobados'
 import { Route as AppInspeccionesRouteImport } from './routes/_app/inspecciones'
 import { Route as AppDesembolsosRouteImport } from './routes/_app/desembolsos'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
@@ -65,6 +66,11 @@ const AppRendimientoRoute = AppRendimientoRouteImport.update({
 const AppRecuperacionRoute = AppRecuperacionRouteImport.update({
   id: '/recuperacion',
   path: '/recuperacion',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPreaprobadosRoute = AppPreaprobadosRouteImport.update({
+  id: '/preaprobados',
+  path: '/preaprobados',
   getParentRoute: () => AppRoute,
 } as any)
 const AppInspeccionesRoute = AppInspeccionesRouteImport.update({
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AppDashboardRoute
   '/desembolsos': typeof AppDesembolsosRoute
   '/inspecciones': typeof AppInspeccionesRoute
+  '/preaprobados': typeof AppPreaprobadosRoute
   '/recuperacion': typeof AppRecuperacionRoute
   '/rendimiento': typeof AppRendimientoRoute
   '/reportes': typeof AppReportesRoute
@@ -149,6 +156,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AppDashboardRoute
   '/desembolsos': typeof AppDesembolsosRoute
   '/inspecciones': typeof AppInspeccionesRoute
+  '/preaprobados': typeof AppPreaprobadosRoute
   '/recuperacion': typeof AppRecuperacionRoute
   '/rendimiento': typeof AppRendimientoRoute
   '/reportes': typeof AppReportesRoute
@@ -170,6 +178,7 @@ export interface FileRoutesById {
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/desembolsos': typeof AppDesembolsosRoute
   '/_app/inspecciones': typeof AppInspeccionesRoute
+  '/_app/preaprobados': typeof AppPreaprobadosRoute
   '/_app/recuperacion': typeof AppRecuperacionRoute
   '/_app/rendimiento': typeof AppRendimientoRoute
   '/_app/reportes': typeof AppReportesRoute
@@ -191,6 +200,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/desembolsos'
     | '/inspecciones'
+    | '/preaprobados'
     | '/recuperacion'
     | '/rendimiento'
     | '/reportes'
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/desembolsos'
     | '/inspecciones'
+    | '/preaprobados'
     | '/recuperacion'
     | '/rendimiento'
     | '/reportes'
@@ -230,6 +241,7 @@ export interface FileRouteTypes {
     | '/_app/dashboard'
     | '/_app/desembolsos'
     | '/_app/inspecciones'
+    | '/_app/preaprobados'
     | '/_app/recuperacion'
     | '/_app/rendimiento'
     | '/_app/reportes'
@@ -300,6 +312,13 @@ declare module '@tanstack/react-router' {
       path: '/recuperacion'
       fullPath: '/recuperacion'
       preLoaderRoute: typeof AppRecuperacionRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/preaprobados': {
+      id: '/_app/preaprobados'
+      path: '/preaprobados'
+      fullPath: '/preaprobados'
+      preLoaderRoute: typeof AppPreaprobadosRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/inspecciones': {
@@ -385,6 +404,7 @@ interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppDesembolsosRoute: typeof AppDesembolsosRoute
   AppInspeccionesRoute: typeof AppInspeccionesRoute
+  AppPreaprobadosRoute: typeof AppPreaprobadosRoute
   AppRecuperacionRoute: typeof AppRecuperacionRoute
   AppRendimientoRoute: typeof AppRendimientoRoute
   AppReportesRoute: typeof AppReportesRoute
@@ -403,6 +423,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppDesembolsosRoute: AppDesembolsosRoute,
   AppInspeccionesRoute: AppInspeccionesRoute,
+  AppPreaprobadosRoute: AppPreaprobadosRoute,
   AppRecuperacionRoute: AppRecuperacionRoute,
   AppRendimientoRoute: AppRendimientoRoute,
   AppReportesRoute: AppReportesRoute,
