@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppSolicitudesRouteImport } from './routes/_app/solicitudes'
 import { Route as AppSeguimientoRouteImport } from './routes/_app/seguimiento'
 import { Route as AppReportesRouteImport } from './routes/_app/reportes'
+import { Route as AppRendimientoRouteImport } from './routes/_app/rendimiento'
 import { Route as AppRecuperacionRouteImport } from './routes/_app/recuperacion'
 import { Route as AppInspeccionesRouteImport } from './routes/_app/inspecciones'
 import { Route as AppDesembolsosRouteImport } from './routes/_app/desembolsos'
@@ -54,6 +55,11 @@ const AppSeguimientoRoute = AppSeguimientoRouteImport.update({
 const AppReportesRoute = AppReportesRouteImport.update({
   id: '/reportes',
   path: '/reportes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRendimientoRoute = AppRendimientoRouteImport.update({
+  id: '/rendimiento',
+  path: '/rendimiento',
   getParentRoute: () => AppRoute,
 } as any)
 const AppRecuperacionRoute = AppRecuperacionRouteImport.update({
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/desembolsos': typeof AppDesembolsosRoute
   '/inspecciones': typeof AppInspeccionesRoute
   '/recuperacion': typeof AppRecuperacionRoute
+  '/rendimiento': typeof AppRendimientoRoute
   '/reportes': typeof AppReportesRoute
   '/seguimiento': typeof AppSeguimientoRoute
   '/solicitudes': typeof AppSolicitudesRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/desembolsos': typeof AppDesembolsosRoute
   '/inspecciones': typeof AppInspeccionesRoute
   '/recuperacion': typeof AppRecuperacionRoute
+  '/rendimiento': typeof AppRendimientoRoute
   '/reportes': typeof AppReportesRoute
   '/seguimiento': typeof AppSeguimientoRoute
   '/solicitudes': typeof AppSolicitudesRoute
@@ -163,6 +171,7 @@ export interface FileRoutesById {
   '/_app/desembolsos': typeof AppDesembolsosRoute
   '/_app/inspecciones': typeof AppInspeccionesRoute
   '/_app/recuperacion': typeof AppRecuperacionRoute
+  '/_app/rendimiento': typeof AppRendimientoRoute
   '/_app/reportes': typeof AppReportesRoute
   '/_app/seguimiento': typeof AppSeguimientoRoute
   '/_app/solicitudes': typeof AppSolicitudesRoute
@@ -183,6 +192,7 @@ export interface FileRouteTypes {
     | '/desembolsos'
     | '/inspecciones'
     | '/recuperacion'
+    | '/rendimiento'
     | '/reportes'
     | '/seguimiento'
     | '/solicitudes'
@@ -201,6 +211,7 @@ export interface FileRouteTypes {
     | '/desembolsos'
     | '/inspecciones'
     | '/recuperacion'
+    | '/rendimiento'
     | '/reportes'
     | '/seguimiento'
     | '/solicitudes'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/_app/desembolsos'
     | '/_app/inspecciones'
     | '/_app/recuperacion'
+    | '/_app/rendimiento'
     | '/_app/reportes'
     | '/_app/seguimiento'
     | '/_app/solicitudes'
@@ -274,6 +286,13 @@ declare module '@tanstack/react-router' {
       path: '/reportes'
       fullPath: '/reportes'
       preLoaderRoute: typeof AppReportesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/rendimiento': {
+      id: '/_app/rendimiento'
+      path: '/rendimiento'
+      fullPath: '/rendimiento'
+      preLoaderRoute: typeof AppRendimientoRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/recuperacion': {
@@ -367,6 +386,7 @@ interface AppRouteChildren {
   AppDesembolsosRoute: typeof AppDesembolsosRoute
   AppInspeccionesRoute: typeof AppInspeccionesRoute
   AppRecuperacionRoute: typeof AppRecuperacionRoute
+  AppRendimientoRoute: typeof AppRendimientoRoute
   AppReportesRoute: typeof AppReportesRoute
   AppSeguimientoRoute: typeof AppSeguimientoRoute
   AppSolicitudesRoute: typeof AppSolicitudesRoute
@@ -384,6 +404,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppDesembolsosRoute: AppDesembolsosRoute,
   AppInspeccionesRoute: AppInspeccionesRoute,
   AppRecuperacionRoute: AppRecuperacionRoute,
+  AppRendimientoRoute: AppRendimientoRoute,
   AppReportesRoute: AppReportesRoute,
   AppSeguimientoRoute: AppSeguimientoRoute,
   AppSolicitudesRoute: AppSolicitudesRoute,
