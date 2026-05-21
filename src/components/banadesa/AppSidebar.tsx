@@ -1,5 +1,5 @@
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
-import { LayoutDashboard, FileText, Users, Calculator, MapPin, ShieldCheck, Banknote, Activity, BarChart3, Settings, Shield, ScrollText, LogOut, Bell, Search, Gavel } from "lucide-react";
+import { LayoutDashboard, FileText, Users, Calculator, MapPin, ShieldCheck, Banknote, Activity, BarChart3, Settings, Shield, ScrollText, LogOut, Bell, Search, Gavel, Trophy } from "lucide-react";
 import { Logo } from "./Logo";
 import { getUser, logout } from "@/lib/auth";
 import { useEffect, useState } from "react";
@@ -16,6 +16,7 @@ const NAV = [
   { to: "/seguimiento", label: "Seguimiento", icon: Activity },
   { to: "/recuperacion", label: "Recuperación y cobro", icon: Gavel },
   { to: "/reportes", label: "Reportes", icon: BarChart3 },
+  { to: "/rendimiento", label: "Rendimiento", icon: Trophy },
   { to: "/administracion", label: "Administración", icon: Shield },
   { to: "/auditoria", label: "Auditoría", icon: ScrollText },
   { to: "/configuracion", label: "Configuración", icon: Settings },
