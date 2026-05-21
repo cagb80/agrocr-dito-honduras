@@ -1,5 +1,5 @@
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
-import { LayoutDashboard, FileText, Users, Calculator, MapPin, ShieldCheck, Banknote, Activity, BarChart3, Settings, Shield, ScrollText, LogOut, Bell, Search, Gavel, Trophy } from "lucide-react";
+import { LayoutDashboard, FileText, Users, Calculator, MapPin, ShieldCheck, Banknote, Activity, BarChart3, Settings, Shield, ScrollText, LogOut, Bell, Search, Gavel, Trophy, Sparkles } from "lucide-react";
 import { Logo } from "./Logo";
 import { getUser, logout } from "@/lib/auth";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/solicitudes", label: "Solicitudes", icon: FileText },
   { to: "/clientes", label: "Clientes", icon: Users },
+  { to: "/preaprobados", label: "Cartera pre-aprobada", icon: Sparkles },
   { to: "/analisis", label: "Análisis de crédito", icon: Calculator },
   { to: "/inspecciones", label: "Inspecciones de campo", icon: MapPin },
   { to: "/aprobaciones", label: "Aprobaciones", icon: ShieldCheck },
